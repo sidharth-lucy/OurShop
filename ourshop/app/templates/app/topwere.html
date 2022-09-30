@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+        <a href="{% url 'topwear' %}" class="list-group-item list-group-item-action" aria-current="true">All Top wear</a>
+
+        {% for b in brands %}
+            <a href="{% url 'topweardata' b %}" class="list-group-item list-group-item-action" aria-current="true">{{ b }}</a>
+        {% endfor %}
+
+    </div>  
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+    <div class="row">
+
+        {% for top in topwears %}
+            <div class="col-sm-4 text-center mb-4">
+                <a href="{% url 'product-detail' top.id %}" class="btn">
+                    <div class="item">
+                        <img src="{{top.product_image.url}}" alt="" height='280' width='230'>
+                        <div class="fw-bold"> {{top.title}} </div>
+                        <div class="fw-bold"> {{top.discounted_price}} </div>
+                        <small class="fw-light text-decoration-line-through"> {{top.selling_price}} </small>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+   
+    
+    </div> 
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
